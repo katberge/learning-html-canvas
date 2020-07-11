@@ -43,6 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
             c.arc(this.x, this.y, this.r, 0, Math.PI * 2), false;
             c.strokeStyle = color;
             c.stroke();
+            c.fillStyle = color; 
+            c.fill(); // fills in the stroke shape
         };
         this.update = () => {
             if (this.x + this.r > innerWidth || this.x - this.r < 0) {
