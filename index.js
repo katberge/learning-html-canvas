@@ -37,12 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
         x: undefined,
         y: undefined
     }
+    const maxRadius = 100;
+    const minRadius = 5;
 
     // adds eventlisterner function for when the cursor moves
     window.addEventListener("mousemove", (event) => {
         mouse.x = event.x;
         mouse.y = event.y;
-        console.log(mouse);
     });
 
     // makes Circle contructor
@@ -71,9 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
             this.y += this.dy;
 
             // interactivity with mouse
-            if (mouse.x - this.x < 50 && mouse.x - this.x > -50 && mouse.y - this.y < 50 && mouse.y - this.y > -50) {
+            if (mouse.x - this.x < 50 && mouse.x - this.x > -50 && mouse.y - this.y < 50 
+                && mouse.y - this.y > -50 && this.r < maxRadius) {
                 this.r += 3;
-            } else if (this.r > 5) {
+            } else if (this.r > minRadius) {
                 this.r -= 1;
             }
         }
