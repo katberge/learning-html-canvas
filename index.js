@@ -45,6 +45,12 @@ document.addEventListener("DOMContentLoaded", () => {
         mouse.y = event.y;
     });
 
+    // adds event listener to make canvas size responsive to window resizing
+    window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    })
+
     // makes Circle contructor
     function Circle(x, y, dx, dy, r, color) {
         this.x = x;
