@@ -13,5 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
     c.beginPath();
     c.moveTo(700, 200);
     c.lineTo(400, 500);
+    c.lineTo(700, 500);
+    c.lineTo(700, 300);
+    // changes color of lines
+    c.strokeStyle = "#900c3f"
     c.stroke();
 });
