@@ -31,7 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     */
 
-    function Circle() {
+    // makes Circle contructor
+    function Circle(x, y, dx, dy, r, color) {
         this.x = x;
         this.dx = dx;
         this.y = y;
@@ -40,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         this.draw = () => {
             c.beginPath();
             c.arc(this.x, this.y, this.r, 0, Math.PI * 2), false;
+            c.strokeStyle = color;
             c.stroke();
         };
         this.update = () => {
@@ -53,36 +55,36 @@ document.addEventListener("DOMContentLoaded", () => {
             this.y += this.dy;
         }
     };
+    
+    // initialize variables
+    let r;
+    let x;
+    let y;
+    let dx;
+    let dy;
+    const colors = ["red", "orange", "yellow", "green", "blue", "purple"];
+    let circles = [];
 
-    // loop to make multiple (30) randomly placed shapes with varying (random) radii and random colors
-    /* for (let i = 0; i < 30; i++) {
-        let x = Math.random() * window.innerWidth;
-        let y = Math.random() * window.innerHeight;
-        let r = 10 + Math.random() * 40
-        const colors = ["red", "orange", "yellow", "green", "blue", "purple"];
+
+    // loop to make multiple (30) randomly placed circles with random radii, random colors, and random speeds
+    for (let i = 0; i < 30; i++) {
+        r = 10 + Math.random() * 40;
+        x = Math.random() * (innerWidth - 2 * r) + r;
+        y = Math.random() * (innerHeight - 2 * r) + r;
+        dx = 2 + (Math.random() * 5);
+        dy = 2 + (Math.random() * 5);
         let randomIndex = Math.floor(Math.random() * colors.length);
-        c.beginPath();
-        c.arc(x, y, r, 0, Math.PI * 2), false;
-        c.strokeStyle = colors[randomIndex];
-        c.stroke();
-    } */
+        circles.push(new Circle(x, y, dx, dy, r, colors[randomIndex]));
+    }
     
-
     // animation one circle bouncing back and forth
-    let r = 30;
-    let x = Math.random() * (innerWidth - 2 * r) + r; // random x that won't cause circle to get stuck on edge
-    let dx = 5;
-    let y = Math.random() * (innerHeight - 2 * r) + r; // random y that won't cause circle to get stuck on edge
-    let dy = 5;
-
-    let circle = new Circle(200, 200, 5, 5, 30);
-    
     const animate = () => {
         requestAnimationFrame(animate); // makes animate recursively call itself
         c.clearRect(0, 0, innerWidth, innerHeight);
-
-        circle.draw();
-        circle.update();
+        for (let i = 0; i < circles.length; i++) {
+            circles[i].draw();
+            circles[i].update();
+        }
     }
     animate();
 
