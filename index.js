@@ -71,10 +71,11 @@ document.addEventListener("DOMContentLoaded", () => {
             this.y += this.dy;
 
             // interactivity with mouse
-            if (mouse.x - this.x < 50 && mouse.x - this.x > -50 && mouse.y - this.y < 50 && mouse.y - this.y > -50 && this.r < 60) {
+            if (mouse.x - this.x < 50 && mouse.x - this.x > -50 && mouse.y - this.y < 50 && mouse.y - this.y > -50) {
                 this.r += 3;
+            } else if (this.r > 5) {
+                this.r -= 1;
             }
-            this.draw();
         }
     };
     
@@ -89,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // loop to make multiple (30) randomly placed circles with random radii, random colors, and random speeds
-    for (let i = 0; i < 70; i++) {
+    for (let i = 0; i < 500; i++) {
         r = 10 + Math.random() * 40;
         x = Math.random() * (innerWidth - 2 * r) + r;
         y = Math.random() * (innerHeight - 2 * r) + r;
