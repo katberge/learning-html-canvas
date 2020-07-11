@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const c = canvas.getContext("2d");
     // creates a filled in rectangle
     // c.fillRect(x, y , w, h) where x & y are start coordinates and w & h are width and height
+    c.fillStyle = "rgb(255, 87, 51)" // changes color of filled shape
     c.fillRect(100, 100, 200, 50);
     // draws a line (moveTo and strokeTo take xy coordinates)
     c.beginPath();
@@ -15,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     c.lineTo(400, 500);
     c.lineTo(700, 500);
     c.lineTo(700, 300);
-    // changes color of lines
-    c.strokeStyle = "#900c3f"
+    c.strokeStyle = "#900c3f" // changes color of lines
     c.stroke();
 });
