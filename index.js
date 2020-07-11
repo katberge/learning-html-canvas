@@ -23,4 +23,16 @@ document.addEventListener("DOMContentLoaded", () => {
     c.beginPath();
     c.arc(300, 150, 20, 0, Math.PI * 2), false;
     c.stroke();
+    // loop to make multiple (30) randomly placed shapes with varying (random) radii and random colors
+    for (let i = 0; i < 30; i++) {
+        let x = Math.random() * window.innerWidth;
+        let y = Math.random() * window.innerHeight;
+        let r = 10 + Math.random() * 40
+        var colors = ["red", "orange", "yellow", "green", "blue", "purple"];
+        let randomIndex = Math.floor(Math.random() * colors.length);
+        c.beginPath();
+        c.arc(x, y, r, 0, Math.PI * 2), false;
+        c.strokeStyle = colors[randomIndex];
+        c.stroke();
+    }
 });
