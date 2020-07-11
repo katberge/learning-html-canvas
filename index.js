@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
         y: undefined
     }
     const maxRadius = 100;
-    const minRadius = 5;
 
     // adds eventlisterner function for when the cursor moves
     window.addEventListener("mousemove", (event) => {
@@ -53,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
         this.y = y;
         this.dy = dy;
         this.r = r;
+        this.minRadius = r - 17;
         this.draw = () => {
             c.beginPath();
             c.arc(this.x, this.y, this.r, 0, Math.PI * 2), false;
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (mouse.x - this.x < 50 && mouse.x - this.x > -50 && mouse.y - this.y < 50 
                 && mouse.y - this.y > -50 && this.r < maxRadius) {
                 this.r += 3;
-            } else if (this.r > minRadius) {
+            } else if (this.r > this.minRadius) {
                 this.r -= 1;
             }
         }
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // loop to make multiple (30) randomly placed circles with random radii, random colors, and random speeds
     for (let i = 0; i < 500; i++) {
-        r = 10 + Math.random() * 40;
+        r = 20 + Math.random() * 15;
         x = Math.random() * (innerWidth - 2 * r) + r;
         y = Math.random() * (innerHeight - 2 * r) + r;
         dx = Math.random() * 5;
