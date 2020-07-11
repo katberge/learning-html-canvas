@@ -31,6 +31,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     */
 
+    // adds interactive animation (goes with mouse moving)
+    // declares mouse variable for interactive animation
+    let mouse = {
+        x: undefined,
+        y: undefined
+    }
+
+    // adds eventlisterner function for when the cursor moves
+    window.addEventListener("mousemove", (event) => {
+        mouse.x = event.x;
+        mouse.y = event.y;
+        console.log(mouse);
+    });
+
     // makes Circle contructor
     function Circle(x, y, dx, dy, r, color) {
         this.x = x;
@@ -55,6 +69,12 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             this.x += this.dx;
             this.y += this.dy;
+
+            // interactivity with mouse
+            if (mouse.x - this.x < 50 && mouse.x - this.x > -50 && mouse.y - this.y < 50 && mouse.y - this.y > -50 && this.r < 60) {
+                this.r += 3;
+            }
+            this.draw();
         }
     };
     
@@ -69,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // loop to make multiple (30) randomly placed circles with random radii, random colors, and random speeds
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 70; i++) {
         r = 10 + Math.random() * 40;
         x = Math.random() * (innerWidth - 2 * r) + r;
         y = Math.random() * (innerHeight - 2 * r) + r;
