@@ -71,8 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
         r = 10 + Math.random() * 40;
         x = Math.random() * (innerWidth - 2 * r) + r;
         y = Math.random() * (innerHeight - 2 * r) + r;
-        dx = 2 + (Math.random() * 5);
-        dy = 2 + (Math.random() * 5);
+        dx = Math.random() * 5;
+        dy = Math.random() * 5;
         let randomIndex = Math.floor(Math.random() * colors.length);
         circles.push(new Circle(x, y, dx, dy, r, colors[randomIndex]));
     }
