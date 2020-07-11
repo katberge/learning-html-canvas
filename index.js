@@ -43,19 +43,25 @@ document.addEventListener("DOMContentLoaded", () => {
     } */
 
     // animation one circle bouncing back and forth
-    let x = 30;
-    let dx = 5;
     let r = 30;
+    let x = r;
+    let dx = 5;
+    let y = r;
+    let dy = 5;
     const animate = () => {
         requestAnimationFrame(animate); // makes animate recursively call itself
         c.clearRect(0, 0, innerWidth, innerHeight);
         c.beginPath();
-        c.arc(x, 300, r, 0, Math.PI * 2), false;
+        c.arc(x, y, r, 0, Math.PI * 2), false;
         c.stroke();
         if (x + r > innerWidth || x - r < 0) {
             dx = -dx;
         }
+        if (y + r > innerHeight || y - r < 0) {
+            dy = -dy;
+        }
         x += dx;
+        y += dy;
     }
     animate();
 
