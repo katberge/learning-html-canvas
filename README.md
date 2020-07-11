@@ -1,0 +1,3 @@
+# Learning HTML Canvas
+
+Notes and exploration with HTML canvas. I will be using/following along with this youtube playlist https://www.youtube.com/watch?v=EO6OkltgudE&list=PLpPnRKq7eNW3We9VdCfx9fprhqXHwTPXL to learn about HTML canvas. My hope is that by the end of this, I will have at least a basic understanding of how to use HTML canvas, notes to look back on when I want to use HTML canvas later, and some interesting designs of my own. 
