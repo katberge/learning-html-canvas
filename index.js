@@ -9,4 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // creates a filled in rectangle
     // c.fillRect(x, y , w, h) where x & y are start coordinates and w & h are width and height
     c.fillRect(100, 100, 200, 50);
+    // draws a line (moveTo and strokeTo take xy coordinates)
+    c.beginPath();
+    c.moveTo(700, 200);
+    c.lineTo(400, 500);
+    c.stroke();
 });
