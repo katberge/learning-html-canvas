@@ -44,9 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // animation one circle bouncing back and forth
     let r = 30;
-    let x = r;
+    let x = Math.random() * (innerWidth - 2 * r) + r;
     let dx = 5;
-    let y = r;
+    let y = Math.random() * (innerHeight - 2 * r) + r;
     let dy = 5;
     const animate = () => {
         requestAnimationFrame(animate); // makes animate recursively call itself
