@@ -18,4 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
     c.lineTo(700, 300);
     c.strokeStyle = "#900c3f" // changes color of lines
     c.stroke();
+    // draws a circle
+    // arc(x, y, radius, startAngle, endAngle, anticlockwise?: boolean)
+    c.beginPath();
+    c.arc(300, 150, 20, 0, Math.PI * 2), false;
+    c.stroke();
 });
