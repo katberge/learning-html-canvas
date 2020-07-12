@@ -24,8 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
         this.x = x;
         this.y = y;
         this.r = r;
-        this.dx = 5;
-        this.dy = 5;
+        this.dx = 3 + Math.random() * 5;
+        this.dy = 3 + Math.random() * 5;
         this.color = color;
         this.draw = () => {
             c.beginPath();
@@ -35,7 +35,14 @@ document.addEventListener("DOMContentLoaded", () => {
             c.fillStyle = this.color;
         };
         this.update = () => {
-            //if ()
+            if (this.x < this.r || this.x > canvas.width - this.r) {
+                this.dx = -this.dx;
+            }
+            if (this.y < this.r || this.y > canvas.height - this.r) {
+                this.dy = -this.dy;
+            }
+            this.x += this.dx;
+            this.y += this.dy;
         };
     };
 
@@ -81,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
         c.clearRect(0, 0, innerWidth, innerHeight);
         for (let i = 0; i < circles.length; i++) {
             circles[i].draw();
+            circles[i].update();
         }
         for (let i = 0; i < circles.length; i++) {
             for (let j = i + 1; j < circles.length; j++) {
