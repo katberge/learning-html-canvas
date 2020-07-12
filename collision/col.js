@@ -4,6 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.height = window.innerHeight;
     const c = canvas.getContext("2d");
 
+    window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    })
+
     // get cursor position and assign it to mouse object
     let mouse = {
         x: undefined,
