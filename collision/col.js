@@ -54,6 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     resolveCollision(this, circles[i]);
                     if (this.opacity <= 0.7) {
                         this.opacity += 0.05;
+                    }
+                    if (circles[i].opacity <= 0.07) {
                         circles[i].opacity += 0.05;
                     }
                 }
