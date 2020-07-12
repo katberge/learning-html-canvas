@@ -27,15 +27,37 @@ document.addEventListener("DOMContentLoaded", () => {
             c.stroke();
             c.fillStyle = color;
             c.fill();
-        }
+        };
         this.mouseMove = () => {
             this.x = mouse.x;
             this.y = mouse.y;
-        }
-    }
+        };
+    };
 
+    // creates two new Circles 
     let circle = new Circle(canvas.width / 2, canvas.height / 2, 70, "black");
     let movingCircle = new Circle(mouse.x, mouse.y, 30, "blue");
+
+    // get distance between the circles 
+    const getDistance = (x1, x2, y1, y2) => {
+        let xDist = x2 - x1;
+        let yDist = y2 - y1;
+        let distance = Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2));
+        return distance;
+    };
+
+    // check if collided
+    const checkCollide = (circle1, circle2) => {
+        let x1 = circle1.x;
+        let x2 = circle2.x;
+        let y1 = circle1.y;
+        let y2 = circle2.y;
+        let r1 = circle1.r;
+        let r2 = circle2.r;
+        if (getDistance(x1, x2, y1, y2) <= r1 + r2) {
+            console.log("CRASH");
+        }
+    };
 
     // animate function
     const animate = () => {
@@ -44,6 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         circle.draw();
         movingCircle.draw();
         movingCircle.mouseMove();
+        checkCollide(circle, movingCircle);
     }
     animate();
 });
