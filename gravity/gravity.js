@@ -7,9 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.height = window.innerHeight;
 
     // makes canvas width responsive to window resizing
-    document.addEventListener("resize", () => {
+    window.addEventListener("resize", () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        init();
     })
 
     // adds methods/functions to draw 2d shapes 
@@ -32,13 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
             c.fill(); // fills in the stroke shape
         };
         this.update = () => {
-            if (this.x + this.r > innerWidth || this.x - this.r < 0) {
-                this.dx = -this.dx;
-            }
             if (this.y + this.r > innerHeight || this.y - this.r < 0) {
                 this.dy = -this.dy;
             }
-            this.x += this.dx;
             this.y += this.dy;
         }
     };
@@ -74,5 +71,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     animate();
+
+    // redraws the circles like when the pages load  for when the window resizes
+    const init = () => {
+        circles = [];
+        for (let i = 0; i < 50; i++) {
+            r = 10 + Math.random() * 40;
+            x = Math.random() * (innerWidth - 2 * r) + r;
+            y = Math.random() * (innerHeight - 2 * r) + r;
+            dx = Math.random() * 5;
+            dy = Math.random() * 5;
+            let randomIndex = Math.floor(Math.random() * colors.length);
+            circles.push(new Circle(x, y, dx, dy, r, colors[randomIndex]));
+        }
+    }
 
 });
