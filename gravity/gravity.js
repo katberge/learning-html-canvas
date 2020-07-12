@@ -17,9 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const c = canvas.getContext("2d");
     
     // makes Circle contructor
-    function Circle(x, y, dx, dy, r, color) {
+    function Circle(x, y, dy, r, color) {
         this.x = x;
-        this.dx = dx;
         this.y = y;
         this.dy = dy;
         this.r = r;
@@ -33,8 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
             c.fill(); // fills in the stroke shape
         };
         this.update = () => {
-            if (this.y + this.r > innerHeight || this.y - this.r < 0) {
+            if (this.y + this.r > canvas.height) {
                 this.dy = -this.dy;
+            } else {
+                this.dy += 1;
             }
             this.y += this.dy;
         }
@@ -44,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let r;
     let x;
     let y;
-    let dx;
     let dy;
     const colors = ["red", "orange", "yellow", "green", "blue", "purple"];
     let circles = [];
@@ -55,10 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
         r = 10 + Math.random() * 40;
         x = Math.random() * (innerWidth - 2 * r) + r;
         y = Math.random() * (innerHeight - 2 * r) + r;
-        dx = Math.random() * 5;
         dy = Math.random() * 5;
         let randomIndex = Math.floor(Math.random() * colors.length);
-        circles.push(new Circle(x, y, dx, dy, r, colors[randomIndex]));
+        circles.push(new Circle(x, y, dy, r, colors[randomIndex]));
     }
     
     // animation one circle bouncing back and forth
@@ -79,10 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
             r = 10 + Math.random() * 40;
             x = Math.random() * (innerWidth - 2 * r) + r;
             y = Math.random() * (innerHeight - 2 * r) + r;
-            dx = Math.random() * 5;
             dy = Math.random() * 5;
             let randomIndex = Math.floor(Math.random() * colors.length);
-            circles.push(new Circle(x, y, dx, dy, r, colors[randomIndex]));
+            circles.push(new Circle(x, y, dy, r, colors[randomIndex]));
         }
     }
 
