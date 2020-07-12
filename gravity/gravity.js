@@ -21,6 +21,15 @@ document.addEventListener("DOMContentLoaded", () => {
         mouse.x = e.x
     })
 
+    // makes all the balls jump when space bar is pressed
+    document.addEventListener("keyup", (e) => {
+        if (e.keyCode == 32) {
+            for (let i = 0; i < circles.length; i++) {
+                circles[i].dy = 15 + Math.random() * 10;
+            }
+        }
+    })
+
     // click interaction with canvas (sends another ball)
     window.addEventListener("click", () => {
         r = 10 + Math.random() * 40;
