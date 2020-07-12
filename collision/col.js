@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let answers = [];
         const checkPosition = () => {
             for (let j = circles.length - 1; j >= 0; j--) {
-                if (getDistance(x, circles[j].x, y, circles[j].y) <= r + circles[j].r){
+                if (getDistance(x, circles[j].x, y, circles[j].y) < r + circles[j].r){
                     answers.push("true");
                 }
             }
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let y2 = circle2.y;
         let r1 = circle1.r;
         let r2 = circle2.r;
-        if (getDistance(x1, x2, y1, y2) <= r1 + r2) {
+        if (getDistance(x1, x2, y1, y2) < r1 + r2) {
             circle1.color = "black";
             circle2.color = "black";
         }
