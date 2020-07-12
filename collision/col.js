@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     continue;
                 }
                 if (getDistance(this.x, circles[i].x, this.y, circles[i].y) < this.r + circles[i].r) {
-                    resolveCollision(this, circles[i]);
+                    //resolveCollision(this, circles[i]);
                 }
             }
 
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             this.x += this.velo.x;
-            this.y += this.velo.x;
+            this.y += this.velo.y;
         };
     };
 
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
         c.clearRect(0, 0, innerWidth, innerHeight);
         for (let i = 0; i < circles.length; i++) {
             circles[i].draw();
-            //circles[i].update();
+            circles[i].update();
         }
     }
     animate();
