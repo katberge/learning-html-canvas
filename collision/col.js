@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
         this.y = y;
         this.r = r;
         this.velo = {
-            x: Math.random() - 0.5,
-            y: Math.random() - 0.5
+            x: Math.random() * 6 - 3,
+            y: Math.random() * 6 - 3
         }
         this.m = 1;
         this.color = color;
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     continue;
                 }
                 if (getDistance(this.x, circles[i].x, this.y, circles[i].y) < this.r + circles[i].r) {
-                    //resolveCollision(this, circles[i]);
+                    resolveCollision(this, circles[i]);
                 }
             }
 
@@ -60,43 +60,53 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     };
 
+    // rotate function
+    function rotate(velocity, angle) {
+        const rotatedVelocity = {
+            x: velocity.x * Math.cos(angle) - velocity.y * Math.sin(angle),
+            y: velocity.x * Math.sin(angle) + velocity.y * Math.cos(angle)
+        };
+        return rotatedVelocity;
+    }
+
     // resolve collision function
     const resolveCollision = (circle1, circle2) => {
-        const xVeloDiff = circle2.velo.x - circle1.velo.x;
-        const yVeloDiff = circle2.velo.y - circle1.velo.y;
 
         const xDist = circle2.x - circle1.x;
         const yDist = circle2.y - circle1.y;
 
-        // prevent accidental overlap
-        if ((xVeloDiff * xDist) + (yVeloDiff * yDist) >= 0) {
-            // gets the angle between circles
-            const angle = -Math.atan2(yDist, xDist);
+        // gets the angle between circles
+        const angle = -Math.atan2(yDist, xDist);
 
-            // mass variables
-            const m1 = circle1.m;
-            const m2 = circle2.m;
+        // mass variables
+        const m1 = circle1.m;
+        const m2 = circle2.m;
 
-            // velocity before 
-            const u1 = c.rotate(circle1.velo, angle);
-            const u2 = c.rotate(circle2.velo, angle);
+        // velocity before 
+        const u1 = rotate(circle1.velo, angle);
+        const u2 = rotate(circle2.velo, angle);
 
-            // velocity after 
-            const v1 = { x: u1 * (m1 - m2) / (m1 + m2) + u2 * 2 * m2 / (m1 + m2), y: u1.y};
-            const v2 = { x: u2 * (m1 - m2) / (m1 + m2) + u1 * 2 * m2 / (m1 + m2), y: u2.y};
+        // velocity after 
+        const v1 = { 
+            x: (u1.x * (m1 - m2)) / (m1 + m2) + (u2.x * 2 * m2) / (m1 + m2),
+            y: u1.y
+        };
+        const v2 = { 
+            x: (u2.x * (m1 - m2)) / (m1 + m2) + (u1.x * 2 * m2) / (m1 + m2), 
+            y: u2.y
+        };
 
-            // caculates final velocities
-            const vFinal1 = c.rotate(v1, -angle);
-            const vFinal2 = c.rotate(v2, -angle);
+        // caculates final velocities
+        const vFinal1 = rotate(v1, -angle);
+        const vFinal2 = rotate(v2, -angle);
 
-            // sets velocity to final calculated velocities
-            circle1.velo.x = vFinal1.x;
-            circle1.velo.y = vFinal1.y;
+        // sets velocity to final calculated velocities
+        circle1.velo.x = vFinal1.x;
+        circle1.velo.y = vFinal1.y;
 
-            circle2.velo.x = vFinal2.x;
-            circle2.velo.y = vFinal2.y;
+        circle2.velo.x = vFinal2.x;
+        circle2.velo.y = vFinal2.y;
 
-        }
     };
 
     // get distance between the circles 
@@ -112,8 +122,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // creates two new Circles 
     let circles = [];
-    for (let i = 0; i < 5; i++) {
-        let r = 100;
+    for (let i = 0; i < 50; i++) {
+        let r = 20;
         let x = r + (Math.random() * (canvas.width - (2 * r)));
         let y = r + (Math.random() * (canvas.height - (2 * r)));
         if (i !== 0) {
