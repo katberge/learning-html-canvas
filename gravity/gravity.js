@@ -13,10 +13,19 @@ document.addEventListener("DOMContentLoaded", () => {
         init();
     })
 
+    // get mouse x position for click interaction
+    mouse = {
+        x: undefined
+    }
+    document.addEventListener("mousemove", (e) => {
+        mouse.x = e.x
+    })
+
+    // click interaction with canvas (sends another ball)
     window.addEventListener("click", () => {
         r = 10 + Math.random() * 40;
-        x = Math.random() * (innerWidth - 2 * r) + r;
-        y = Math.random() * 20;
+        x = mouse.x;
+        y = 0;
         dy = Math.random() * 5;
         let randomIndex = Math.floor(Math.random() * colors.length);
         circles.push(new Circle(x, y, dy, r, colors[randomIndex]));
