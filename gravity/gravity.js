@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
         this.draw = () => {
             c.beginPath();
             c.arc(this.x, this.y, this.r, 0, Math.PI * 2), false;
-            c.strokeStyle = color;
             c.stroke();
             c.fillStyle = color; 
             c.fill(); // fills in the stroke shape
@@ -74,7 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let y;
     let dy;
     let friction = 0.9;
-    const colors = ["red", "orange", "yellow", "green", "blue", "purple"];
+    const colors = ["#ffe8b1", "#b6916b", "#bd7a79", "#6b90b6", "#d7def2", "#ebb0ba",
+     "#c4f0e8", "#ffc1b1", "#b1efff", "#9bc99e", "#c99bc6"];
     let circles = [];
 
 
