@@ -28,9 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
         this.draw = () => {
             c.beginPath();
             c.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
-            c.strokeStyle = color;
+            c.strokeStyle = this.color;
             c.stroke();
-            c.fillStyle = color;
+            c.fillStyle = this.color;
             c.fill();
         };
         this.mouseMove = () => {
@@ -60,7 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
         let r1 = circle1.r;
         let r2 = circle2.r;
         if (getDistance(x1, x2, y1, y2) <= r1 + r2) {
-            console.log("CRASH");
+            circle1.color = "blue";
+        } else {
+            circle.color = "black";
         }
     };
 
