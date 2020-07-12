@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.querySelector("canvas");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    canvas.style.backgroundColor = "black";
     const c = canvas.getContext("2d");
 
     window.addEventListener("resize", () => {
@@ -24,18 +25,24 @@ document.addEventListener("DOMContentLoaded", () => {
         this.x = x;
         this.y = y;
         this.r = r;
+        this.opacity = 0.0;
         this.velo = {
-            x: Math.random() * 6 - 3,
-            y: Math.random() * 6 - 3
+            x: Math.random() * 2 - 1,
+            y: Math.random() * 2 - 1
         }
         this.m = 1;
         this.color = color;
         this.draw = () => {
             c.beginPath();
             c.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
+            c.save(); // makes changed opacity only apply to fill
+            c.globalAlpha = this.opacity;
+            c.fillStyle = this.color;
+            c.fill();
+            // makes changed opacity not apply to stroke
+            c.restore();
             c.strokeStyle = this.color;
             c.stroke();
-            c.fillStyle = this.color;
         };
         this.update = () => {
 
@@ -45,6 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 if (getDistance(this.x, circles[i].x, this.y, circles[i].y) < this.r + circles[i].r) {
                     resolveCollision(this, circles[i]);
+                    if (this.opacity <= 0.8) {
+                        this.opacity += 0.05;
+                    }
                 }
             }
 
@@ -122,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // creates two new Circles 
     let circles = [];
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 80; i++) {
         let r = 20;
         let x = r + (Math.random() * (canvas.width - (2 * r)));
         let y = r + (Math.random() * (canvas.height - (2 * r)));
