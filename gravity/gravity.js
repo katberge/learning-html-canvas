@@ -13,6 +13,15 @@ document.addEventListener("DOMContentLoaded", () => {
         init();
     })
 
+    window.addEventListener("click", () => {
+        r = 10 + Math.random() * 40;
+        x = Math.random() * (innerWidth - 2 * r) + r;
+        y = Math.random() * 20;
+        dy = Math.random() * 5;
+        let randomIndex = Math.floor(Math.random() * colors.length);
+        circles.push(new Circle(x, y, dy, r, colors[randomIndex]));
+    })
+
     // adds methods/functions to draw 2d shapes 
     const c = canvas.getContext("2d");
     
