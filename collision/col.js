@@ -31,17 +31,22 @@ document.addEventListener("DOMContentLoaded", () => {
             c.strokeStyle = this.color;
             c.stroke();
             c.fillStyle = this.color;
-            c.fill();
-        };
-        this.mouseMove = () => {
-            this.x = mouse.x;
-            this.y = mouse.y;
         };
     };
 
+    // colors array
+    const colors = ["#f4d573", "#afdde3","#b7a5e3", "#eeaddb", "#88eab1", "#7392f4", "#f49573", "#f47392", "#c1ea88"];
+
     // creates two new Circles 
-    let circle = new Circle(canvas.width / 2, canvas.height / 2, 70, "black");
-    let movingCircle = new Circle(mouse.x, mouse.y, 30, "blue");
+    let circles = [];
+    for (let i = 0; i < 100; i++) {
+        let x = Math.random() * canvas.width;
+        let y = Math.random() * canvas.height;
+        let r = 20;
+        let randomIndex = Math.floor(Math.random() * colors.length);
+        let color = colors[randomIndex];
+        circles.push(new Circle(x, y, r, color));
+    };
 
     // get distance between the circles 
     const getDistance = (x1, x2, y1, y2) => {
@@ -60,9 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
         let r1 = circle1.r;
         let r2 = circle2.r;
         if (getDistance(x1, x2, y1, y2) <= r1 + r2) {
-            circle1.color = "blue";
-        } else {
-            circle.color = "black";
+            circle1.color = "black";
+            circle2.color = "black";
         }
     };
 
@@ -70,10 +74,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const animate = () => {
         requestAnimationFrame(animate);
         c.clearRect(0, 0, innerWidth, innerHeight);
-        circle.draw();
-        movingCircle.draw();
-        movingCircle.mouseMove();
-        checkCollide(circle, movingCircle);
+        for (let i = 0; i < circles.length; i++) {
+            circles[i].draw();
+        }
+        for (let i = 0; i < circles.length; i++) {
+            for (let j = i + 1; j < circles.length; j++) {
+                checkCollide(circles[i], circles[j]);
+            }
+        }
     }
     animate();
 });
