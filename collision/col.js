@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
         this.x = x;
         this.y = y;
         this.r = r;
+        this.dx = 5;
+        this.dy = 5;
         this.color = color;
         this.draw = () => {
             c.beginPath();
@@ -31,6 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
             c.strokeStyle = this.color;
             c.stroke();
             c.fillStyle = this.color;
+        };
+        this.update = () => {
+            //if ()
         };
     };
 
@@ -40,9 +45,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // creates two new Circles 
     let circles = [];
     for (let i = 0; i < 100; i++) {
-        let x = Math.random() * canvas.width;
-        let y = Math.random() * canvas.height;
         let r = 20;
+        let x = r + (Math.random() * (canvas.width - (2 * r)));
+        let y = r + (Math.random() * (canvas.height - (2 * r)));
         let randomIndex = Math.floor(Math.random() * colors.length);
         let color = colors[randomIndex];
         circles.push(new Circle(x, y, r, color));
