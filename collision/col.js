@@ -46,6 +46,14 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     };
 
+    // get distance between the circles 
+    const getDistance = (x1, x2, y1, y2) => {
+        let xDist = x2 - x1;
+        let yDist = y2 - y1;
+        let distance = Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2));
+        return distance;
+    };
+
     // colors array
     const colors = ["#f4d573", "#afdde3","#b7a5e3", "#eeaddb", "#88eab1", "#7392f4", "#f49573", "#f47392", "#c1ea88"];
 
@@ -55,17 +63,26 @@ document.addEventListener("DOMContentLoaded", () => {
         let r = 20;
         let x = r + (Math.random() * (canvas.width - (2 * r)));
         let y = r + (Math.random() * (canvas.height - (2 * r)));
+        let answers = [];
+        const checkPosition = () => {
+            for (let j = circles.length - 1; j >= 0; j--) {
+                if (getDistance(x, circles[j].x, y, circles[j].y) <= r + circles[j].r){
+                    answers.push("true");
+                }
+            }
+            if (!answers.length == 0) {
+                x = r + (Math.random() * (canvas.width - (2 * r)));
+                y = r + (Math.random() * (canvas.height - (2 * r)));
+                answers = [];
+                checkPosition();
+            }
+        };
+        if (i > 0) {
+            checkPosition();
+        }
         let randomIndex = Math.floor(Math.random() * colors.length);
         let color = colors[randomIndex];
         circles.push(new Circle(x, y, r, color));
-    };
-
-    // get distance between the circles 
-    const getDistance = (x1, x2, y1, y2) => {
-        let xDist = x2 - x1;
-        let yDist = y2 - y1;
-        let distance = Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2));
-        return distance;
     };
 
     // check if collided
@@ -88,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
         c.clearRect(0, 0, innerWidth, innerHeight);
         for (let i = 0; i < circles.length; i++) {
             circles[i].draw();
-            circles[i].update();
+            //circles[i].update();
         }
         for (let i = 0; i < circles.length; i++) {
             for (let j = i + 1; j < circles.length; j++) {
