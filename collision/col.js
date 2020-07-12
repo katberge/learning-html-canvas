@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        circles = [];
+        volume = innerHeight * innerWidth;
+        num = Math.ceil(volume / 4500);
+        init();
     })
 
     // get cursor position and assign it to mouse object
@@ -138,26 +142,31 @@ document.addEventListener("DOMContentLoaded", () => {
     // colors array
     const colors = ["#f4d573", "#afdde3","#b7a5e3", "#eeaddb", "#88eab1", "#7392f4", "#f49573", "#f47392", "#c1ea88"];
 
-    // creates two new Circles 
+    // creates two new Circles
     let circles = [];
-    for (let i = 0; i < 100; i++) {
-        let r = 20;
-        let x = r + (Math.random() * (canvas.width - (2 * r)));
-        let y = r + (Math.random() * (canvas.height - (2 * r)));
-        if (i !== 0) {
-            for (let j = 0; j < circles.length; j++) {
-                if (getDistance(x, circles[j].x, y, circles[j].y) < r + circles[j].r){
-                    x = r + (Math.random() * (canvas.width - (2 * r)));
-                    y = r + (Math.random() * (canvas.height - (2 * r)));
+    let volume = innerHeight * innerWidth;
+    let num = Math.ceil(volume / 4500);
+    const init = () => {
+        for (let i = 0; i < num; i++) {
+            let r = 20;
+            let x = r + (Math.random() * (canvas.width - (2 * r)));
+            let y = r + (Math.random() * (canvas.height - (2 * r)));
+            if (i !== 0) {
+                for (let j = 0; j < circles.length; j++) {
+                    if (getDistance(x, circles[j].x, y, circles[j].y) < r + circles[j].r){
+                        x = r + (Math.random() * (canvas.width - (2 * r)));
+                        y = r + (Math.random() * (canvas.height - (2 * r)));
 
-                    j = -1;
+                        j = -1;
+                    }
                 }
             }
-        }
-        let randomIndex = Math.floor(Math.random() * colors.length);
-        let color = colors[randomIndex];
-        circles.push(new Circle(x, y, r, color));
+            let randomIndex = Math.floor(Math.random() * colors.length);
+            let color = colors[randomIndex];
+            circles.push(new Circle(x, y, r, color));
+        };
     };
+    init();
 
     // animate function
     const animate = () => {
