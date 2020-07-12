@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
             c.fill(); // fills in the stroke shape
         };
         this.update = () => {
-            if (this.y + this.r > canvas.height) {
-                this.dy = -this.dy;
+            if (this.y + this.r + this.dy> canvas.height) {
+                this.dy = -this.dy * friction;
             } else {
                 this.dy += 1;
             }
@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let x;
     let y;
     let dy;
+    let friction = 0.9;
     const colors = ["red", "orange", "yellow", "green", "blue", "purple"];
     let circles = [];
 
