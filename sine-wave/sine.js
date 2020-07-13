@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // gets length slider (mostly same methods as previous slider)
     const lengthSlider = document.querySelector("#length-slider");
-    let length = lengthSlider.value;
+    let length = lengthSlider.value / 100;
     lengthSlider.oninput = () => {
-        length = lengthSlider.value;
+        length = lengthSlider.value / 100;
     };
 
     // gets freq slider (same methods as previous)
