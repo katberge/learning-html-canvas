@@ -51,13 +51,15 @@ document.addEventListener("DOMContentLoaded", () => {
             let sineWave = Math.sin((i + x) * length) * amp;
             c.lineTo(i, vertCenter + sineWave);
         }
+        c.strokeStyle = "hsl(100, 50%, 50%)"
         c.stroke();
     };
     init();
 
     const animate = () => {
         requestAnimationFrame(animate);
-        c.clearRect(0, 0, canvas.width, canvas.height);
+        c.fillStyle = "rgba(0, 0, 0, 0.05)";
+        c.fillRect(0, 0, canvas.width, canvas.height);
         init();
         x -= freq;
     }
