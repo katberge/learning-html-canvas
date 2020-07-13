@@ -16,8 +16,15 @@ body {
     bottom: 0;
 }
 
+#bg-color-slider-container {
+    position: fixed;
+    display: flex;
+    right: 0;
+    bottom: 0;
+}
+
 .slider-div {
-    padding: 20px;
+    padding: 10px;
     padding-top: 0;
     text-align: center;
 }
