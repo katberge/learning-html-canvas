@@ -4,8 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
+    // make variable for half of canvas.height
+    const vertCenter = canvas.height / 2;
+
     // gets amp slider
     const ampSlider = document.querySelector("#amp-slider");
+    ampSlider.max = vertCenter;
+    ampSlider.min = -vertCenter;
+    ampSlider.value = vertCenter / 3;
     // set amp variable to the value of ampSlider
     let amp = ampSlider.value;
     // make amp update when ampSlider changes
@@ -19,9 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     lengthSlider.oninput = () => {
         length = lengthSlider.value;
     };
-
-    // make variable for half of canvas.height
-    const vertCenter = canvas.height / 2;
 
     const c = canvas.getContext("2d");
 
