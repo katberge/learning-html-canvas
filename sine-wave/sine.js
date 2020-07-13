@@ -13,6 +13,13 @@ document.addEventListener("DOMContentLoaded", () => {
         amp = ampSlider.value;
     };
 
+    // gets length slider (same methods as amp slider)
+    const lengthSlider = document.querySelector("#length-slider");
+    let length = lengthSlider.value;
+    lengthSlider.oninput = () => {
+        length = lengthSlider.value;
+    };
+
     // make variable for half of canvas.height
     const vertCenter = canvas.height / 2;
 
@@ -29,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
         c.moveTo(0, vertCenter);
         //draw a line for every pixel
         for (let i = 1; i < canvas.width; i ++) {
-            let length = 0.03;
             let sineWave = Math.sin(i * length) * amp;
             c.lineTo(i, vertCenter + sineWave);
         }
