@@ -18,7 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
         c.moveTo(0, vertCenter);
         //draw a line for every pixel
         for (let i = 1; i < canvas.width; i ++) {
-            c.lineTo(i, vertCenter + Math.sin(i));
+            let length = 0.03;
+            let amp = 100;
+            let sineWave = Math.sin(i * length) * amp;
+            c.lineTo(i, vertCenter + sineWave);
         }
         c.stroke();
     };
