@@ -13,6 +13,16 @@ document.addEventListener("DOMContentLoaded", () => {
         init();
     });
 
+    let mouse = {
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2
+    }
+
+    window.addEventListener("mousemove", (e) => {
+        mouse.x = e.x;
+        mouse.y = e.y;
+    })
+
     function Circle(r, color) {
         this.x = 0;
         this.y = 0;
@@ -29,8 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
             c.fill();
         }
         this.update = () => {
-            this.x = window.innerWidth / 2 + (Math.cos(this.radians) * this.length);
-            this.y = window.innerHeight / 2 + (Math.sin(this.radians) * this.length);
+            this.x = mouse.x + (Math.cos(this.radians) * this.length);
+            this.y = mouse.y + (Math.sin(this.radians) * this.length);
             this.radians += (this.length + 40) * 0.0003;
         };
     };
