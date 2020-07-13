@@ -49,9 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const animate = () => {
         requestAnimationFrame(animate);
-        for (let i = 0; i < circles.length; i ++){
-            circles[i].draw();
-        }
+        circles.forEach(circle => {
+            circle.draw();
+        })
     }
     animate();
 
