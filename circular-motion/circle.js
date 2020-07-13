@@ -13,20 +13,38 @@ document.addEventListener("DOMContentLoaded", () => {
         init();
     });
 
+    // get distance from center
+    const getDistance = (x1, y1) => {
+        let x2 = window.innerWidth / 2;
+        let y2 = window.innerHeight / 2;
+        let xDist = x2 - x1;
+        let yDist = y2 - y1;
+        let distance = Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2));
+        return distance;
+    };
+
     function Circle(x, y, r, color) {
         this.x = x;
+        this.ogX = x
         this.y = y;
+        this.ogY = y
         this.r = r;
         this.color = color;
+        this.length = getDistance(this.x, this.y);
+        this.radians = 0;
         this.draw = () => {
             c.beginPath();
-            c.arc(x, y, r, 0, Math.PI * 2, false);
+            c.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
             c.strokeStyle = color;
             c.stroke();
             c.fillStyle = color;
             c.fill();
         }
-        this.update = () => {};
+        this.update = () => {
+            this.x = this.ogX + (Math.cos(this.radians) * this.length);
+            this.y = this.ogY + (Math.sin(this.radians) * this.length);
+            this.radians += Math.PI / 32;
+        };
     };
 
     let r;
@@ -49,7 +67,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const animate = () => {
         requestAnimationFrame(animate);
+        c.clearRect(0, 0, innerWidth, innerHeight);
         circles.forEach(circle => {
+            circle.update();
             circle.draw();
         })
     }
