@@ -30,6 +30,10 @@ document.addEventListener("DOMContentLoaded", () => {
         this.color = color;
         this.length = 30 + Math.random() * 100;
         this.radians = Math.random() * Math.PI * 2;
+        this.prevMouse = {
+            x: this.x,
+            y: this.y
+        }
         this.draw = (prev) => {
             c.beginPath();
             c.lineWidth = this.r;
@@ -45,8 +49,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 x: this.x,
                 y: this.y
             }
-            this.x = mouse.x + (Math.cos(this.radians) * this.length);
-            this.y = mouse.y + (Math.sin(this.radians) * this.length);
+            //drag effect
+            this.prevMouse.x += (mouse.x - this.prevMouse.x) * 0.05;
+            this.prevMouse.y += (mouse.y - this.prevMouse.y) * 0.05;
+
+            this.x = this.prevMouse.x + (Math.cos(this.radians) * this.length);
+            this.y = this.prevMouse.y + (Math.sin(this.radians) * this.length);
             this.radians += (this.length + 40) * 0.0003;
             this.draw(this.previous);
         };
