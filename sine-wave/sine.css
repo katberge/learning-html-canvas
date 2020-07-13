@@ -4,8 +4,14 @@ body {
 
 #slider-container {
     position: fixed;
-    left: 10px;
+    display: flex;
+    left: 0;
     top: 0;
+}
+
+.slider-div {
+    padding: 0 20px;
+    text-align: center;
 }
 
 p {
