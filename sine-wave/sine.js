@@ -5,8 +5,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const c = canvas.getContext("2d");
 
-    c.beginPath();
-    c.moveTo(0, canvas.height / 2);
-    c.lineTo(canvas.width, canvas.height / 2);
-    c.stroke();
+    window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        init();
+    })
+
+    const init = () => {
+        c.beginPath();
+        c.moveTo(0, canvas.height / 2);
+        c.lineTo(canvas.width, canvas.height / 2);
+        c.stroke();
+    };
+    init();
+    
 });
