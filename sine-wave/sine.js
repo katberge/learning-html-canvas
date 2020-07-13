@@ -7,24 +7,32 @@ document.addEventListener("DOMContentLoaded", () => {
     // make variable for half of canvas.height
     const vertCenter = canvas.height / 2;
 
+    // Sliders
     // gets amp slider
     const ampSlider = document.querySelector("#amp-slider");
     ampSlider.max = vertCenter;
     ampSlider.min = -vertCenter;
     ampSlider.value = vertCenter / 3;
-    // set amp variable to the value of ampSlider
-    let amp = ampSlider.value;
+    let amp = ampSlider.value; // set amp variable to the value of ampSlider
     // make amp update when ampSlider changes
     ampSlider.oninput = () => {
         amp = ampSlider.value;
     };
 
-    // gets length slider (same methods as amp slider)
+    // gets length slider (mostly same methods as previous slider)
     const lengthSlider = document.querySelector("#length-slider");
     let length = lengthSlider.value;
     lengthSlider.oninput = () => {
         length = lengthSlider.value;
     };
+
+    // gets freq slider (same methods as previous)
+    const freqSlider = document.querySelector("#freq-slider");
+    let freq = freqSlider.value;
+    freqSlider.oninput = () => {
+        freq = freqSlider.value;
+    };
+
 
     const c = canvas.getContext("2d");
 
@@ -51,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(animate);
         c.clearRect(0, 0, canvas.width, canvas.height);
         init();
-        x -= 5;
+        x -= freq;
     }
     animate();
 });
