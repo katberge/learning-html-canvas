@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const animate = () => {
         requestAnimationFrame(animate);
-        c.fillStyle = "rgba(255,255,255, 0.5)";
+        c.fillStyle = "rgba(255,255,255, 0.2)"; // smaller opacities make bigger trails
         c.fillRect(0, 0, innerWidth, innerHeight);
         circles.forEach(circle => {
             circle.update();
