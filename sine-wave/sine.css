@@ -1,0 +1,9 @@
+body {
+    margin: 0;
+}
+
+#slider-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+}
