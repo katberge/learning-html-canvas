@@ -34,12 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
         init();
     })
 
+    let x = 0;
     const init = () => {
         c.beginPath();
         c.moveTo(0, vertCenter);
         //draw a line for every pixel
         for (let i = 1; i < canvas.width; i ++) {
-            let sineWave = Math.sin(i * length) * amp;
+            let sineWave = Math.sin((i + x) * length) * amp;
             c.lineTo(i, vertCenter + sineWave);
         }
         c.stroke();
@@ -50,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(animate);
         c.clearRect(0, 0, canvas.width, canvas.height);
         init();
+        x -= 5;
     }
     animate();
 });
