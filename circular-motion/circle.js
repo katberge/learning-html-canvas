@@ -25,13 +25,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function Circle(x, y, r, color) {
         this.x = x;
-        this.ogX = x
         this.y = y;
-        this.ogY = y
         this.r = r;
         this.color = color;
         this.length = getDistance(this.x, this.y);
-        this.radians = 0;
+        this.xCoord = this.y - (window.innerHeight / 2);
+        this.yCoord = this.x - (window.innerWidth / 2);
+        this.radians = Math.atan(this.yCoord / this.xCoord);
         this.draw = () => {
             c.beginPath();
             c.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
@@ -41,9 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
             c.fill();
         }
         this.update = () => {
-            this.x = this.ogX + (Math.cos(this.radians) * this.length);
-            this.y = this.ogY + (Math.sin(this.radians) * this.length);
-            this.radians += Math.PI / 32;
+            this.x = window.innerWidth / 2 + (Math.cos(this.radians) * this.length);
+            this.y = window.innerHeight / 2 + (Math.sin(this.radians) * this.length);
+            this.radians += (Math.PI  * this.length * .0001);
         };
     };
 
