@@ -13,25 +13,13 @@ document.addEventListener("DOMContentLoaded", () => {
         init();
     });
 
-    // get distance from center
-    const getDistance = (x1, y1) => {
-        let x2 = window.innerWidth / 2;
-        let y2 = window.innerHeight / 2;
-        let xDist = x2 - x1;
-        let yDist = y2 - y1;
-        let distance = Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2));
-        return distance;
-    };
-
-    function Circle(x, y, r, color) {
-        this.x = x;
-        this.y = y;
+    function Circle(r, color) {
+        this.x = 0;
+        this.y = 0;
         this.r = r;
         this.color = color;
-        this.length = getDistance(this.x, this.y);
-        this.xCoord = this.y - (window.innerHeight / 2);
-        this.yCoord = this.x - (window.innerWidth / 2);
-        this.radians = Math.atan(this.yCoord / this.xCoord);
+        this.length = 30 + Math.random() * 100;
+        this.radians = Math.random() * Math.PI * 2;
         this.draw = () => {
             c.beginPath();
             c.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
@@ -43,24 +31,20 @@ document.addEventListener("DOMContentLoaded", () => {
         this.update = () => {
             this.x = window.innerWidth / 2 + (Math.cos(this.radians) * this.length);
             this.y = window.innerHeight / 2 + (Math.sin(this.radians) * this.length);
-            this.radians += (Math.PI  * this.length * .0001);
+            this.radians += (this.length + 40) * 0.0003;
         };
     };
 
     let r;
-    let x;
-    let y;
     const colors = ["#9cfff9", "#acf2f9", "#bce2f9", "#ccd2f9", "#dcc2f9", "#ecb2f9", "#fca2f9"];
     let circles = [];
 
     const init = () => {
-        for (let i = 0; i < 50; i++) {
-            r = 20;
-            x = (canvas.width / 2) - (canvas.height / 4) + (Math.random() * (canvas.height / 2));
-            y = (canvas.height / 4) + (Math.random() * (canvas.height / 2));
+        for (let i = 0; i < 80; i++) {
+            r = 1 + Math.random() * 4;
             let randomIndex = Math.floor(Math.random() * colors.length);
             let color = colors[randomIndex];
-            circles.push(new Circle(x, y, r, color));
+            circles.push(new Circle(r, color));
         }
     };
     init();
