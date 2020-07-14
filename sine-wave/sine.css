@@ -49,3 +49,13 @@ body {
 p {
     color: #ffffff;
 }
+
+button {
+    font-family: inherit;
+    height: 20px;
+    margin-left: 5px;
+    margin-top: 25px;
+}
+button:active {
+    background-color: cornflowerblue;
+}
