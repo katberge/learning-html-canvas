@@ -60,28 +60,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const rSlider = document.querySelector("#r-slider");
     let r = rSlider.value;
     rSlider.oninput = () => {
-        c.fillRect(0, 0, canvas.width, canvas.height);
         r = rSlider.value;
     };
     // gets green slider (same methods as previous)
     const gSlider = document.querySelector("#g-slider");
     let g = gSlider.value;
     gSlider.oninput = () => {
-        c.fillRect(0, 0, canvas.width, canvas.height);
         g = gSlider.value;
     };
     // gets blue slider (same methods as previous)
     const bSlider = document.querySelector("#b-slider");
     let b = bSlider.value;
     bSlider.oninput = () => {
-        c.fillRect(0, 0, canvas.width, canvas.height);
         b = bSlider.value;
     };
     // gets opacity slider (same methods as previous)
     const opacSlider = document.querySelector("#opac-slider");
     let opac = opacSlider.value;
     opacSlider.oninput = () => {
-        c.fillRect(0, 0, canvas.width, canvas.height);
         opac = opacSlider.value;
     };
 
