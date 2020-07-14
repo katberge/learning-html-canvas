@@ -23,6 +23,23 @@ body {
     bottom: 0;
 }
 
+@media (max-width: 1050px) and (min-width: 800px) {
+    #bg-color-slider-container {
+        flex-wrap: wrap;
+        width: 310px;
+    }
+}
+
+@media (max-width: 800px) {
+    #color-slider-container {
+        bottom: 80px;
+    }
+    
+    #bg-color-slider-container {
+        left: 0;
+    }
+}
+
 .slider-div {
     padding: 10px;
     padding-top: 0;
