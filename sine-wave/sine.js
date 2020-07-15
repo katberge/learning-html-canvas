@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
         c.moveTo(0, vertCenter);
         //draw a line for every pixel
         for (let i = 1; i < canvas.width; i ++) {
-            let sineWave = Math.sin((i + x) * length) * amp / (i / x);
+            let sineWave = Math.sin((i + x) * length) * amp / Math.cos(i / 10);
             c.lineTo(i, vertCenter + sineWave);
         }
         c.strokeStyle = `hsl(${hue}, ${satur}%, ${light}%)`
